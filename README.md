@@ -1,2 +1,1 @@
-# i3wm
-Minhas configs atuais do i3wm
+Incompleto!!! Estou organizando os arquivos de configuração ainda.
