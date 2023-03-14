@@ -1,0 +1,10 @@
+# border | background (tab mode) | title (tab mode) | slipt-indicator-color
+client.focused              #d3c6aa #d3c6aa #323D43 #D699B6 
+#client.unfocused           #323c41 #323D43 #D8CAAC #D699B6
+#client.urgent              #E68183 #323c41 #323c41 #D8CAAC
+#client.placeholder
+#client.focused_inactive    #D8CACC #323D43 #D8CACC #323D43
+
+client.unfocused            #5a6266 #5a6266 #D8CAAC #D699B6
+client.urgent               #E68183 #5a6266 #5a6266 #D8CAAC
+client.focused_inactive     #D8CACC #5a6266 #D8CACC #323D43
