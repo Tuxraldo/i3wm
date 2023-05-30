@@ -1,5 +1,5 @@
 #---------------------------------------------------#
-# Minhas configurações personalizadas do i3wm
+#       Minhas configurações personalizadas do i3wm
 #	          	by tuxraldo                  
 #    	 _ ____                     
 #    	(_)___ \                    
@@ -283,12 +283,15 @@ gaps inner 6
 gaps outer 2
 smart_gaps off
 
-# Toggle gaps ----------------------------------------------------------------------------#
+# (OUTDATED) Toggle gaps ----------------------------------------------------------------------------#
 #set $mode_gaps Toggle gaps: (+) on (-) off
-bindsym $mod+g mode "toggle_gaps"
-mode "toggle_gaps" {
-  bindsym KP_Add mode "default", gaps inner all set 6, gaps outer all set 2
-    bindsym KP_Subtract mode "default", gaps inner all set 0, gaps outer all set 0
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
+#bindsym $mod+g mode "toggle_gaps"
+#mode "toggle_gaps" {
+#  bindsym KP_Add mode "default", gaps inner all set 6, gaps outer all set 2
+#    bindsym KP_Subtract mode "default", gaps inner all set 0, gaps outer all set 0
+#    bindsym Return mode "default"
+#    bindsym Escape mode "default"
+#}
+
+# Toggle gaps ----------------------------------------------------------------------------#
+bindsym $mod+shift+equal gaps inner all toggle 6, gaps outer all toggle 2
