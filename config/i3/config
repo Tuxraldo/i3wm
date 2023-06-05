@@ -21,21 +21,13 @@ floating_modifier $mod
 for_window [class="Galculator" instance="galculator"] floating enable
 for_window [class="Deadbeef"] floating enable, resize set 1300 690, move position center
 
-bindsym $mod+c exec --no-startup-id "xfce4-terminal --role=cmus --command=cmus" 
-assign [class="Xfce4-terminal" window_role="cmus"] $ws5 
-
 bindsym $mod+space floating toggle; resize set 1000 590 ; move position center
 bindsym $mod+Shift+space floating toggle
-
-#for_window [floating] move position center, resize set 1000 590
 
 # Fechar a janela em foco
 bindsym $mod+q kill
 
 # Terminal Padrão
-#bindsym $mod+Return exec --no-startup-id kitty
-#bindsym control+mod1+t exec --no-startup-id xfce4-terminal
-
 bindsym $mod+Return exec --no-startup-id xfce4-terminal
 bindsym control+mod1+t exec --no-startup-id alacritty
 
@@ -57,18 +49,19 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 #Teclas estilo VIM
-#bindsym $mod+h focus left
-#bindsym $mod+j focus down
-#bindsym $mod+k focus up
-#bindsym $mod+l focus right
-#
-#bindsym $mod+Shift+h move left
-#bindsym $mod+Shift+j move down
-#bindsym $mod+Shift+k move up
-#bindsym $mod+Shift+l move right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # Modo fullscreen
 bindsym $mod+f fullscreen toggle
+bindsym $mod+shift+f fullscreen toggle global
 
 # Janelas em fullscreen sobrepostas (parecido com modo monocle do bspwm)
 bindsym mod1+Tab fullscreen disable, focus Right, fullscreen enable
@@ -78,7 +71,7 @@ bindsym $mod+Tab workspace back_and_forth
 # Use o atalho da área de trabalho atual para voltar a última área de trabalho usada
 workspace_auto_back_and_forth yes
 
-# Formas diferentes de alterar entre o foco dos containers
+# Formas diferentes de alterar o foco dos containers
 bindsym control+Tab focus next 
 bindsym shift+Tab focus prev
 bindsym $mod+p focus parent; focus right 
@@ -87,13 +80,9 @@ bindsym $mod+p focus parent; focus right
 bindsym $mod+Shift+s move scratchpad
 bindsym $mod+s scratchpad show
 
-# Mudar layout (tabbed, toggle, stacked)
-#bindsym $mod+Shift+w layout toggle
-#bindsym $mod+w layout tabbed
-#bindsym $mod+e layout toggle tabbed
-
-# Mudar entre os layouts com apenas uma tecla
-bindsym $mod+e layout toggle tabbed split
+# Trocar entre os layouts (tabbed, stacking e split)
+bindsym $mod+m layout toggle tabbed split
+bindsym $mod+e layout toggle tabbed stacking split
 
 # Dividir containers automaticamente (com pelo menos três janelas abertas)
 bindsym $mod+bracketright focus left, split v, focus right, move left
@@ -110,7 +99,7 @@ default_orientation horizontal
 bindsym control+mod1+Right workspace next
 bindsym control+mod1+Left workspace prev
 
-# Jump to urgent window
+# Pular para uma janela urgente
 bindsym $mod+x [urgent=latest] focus
 
 # Definições de áreas de trabalho
@@ -160,6 +149,9 @@ for_window [class="^Thunar$"] focus
 
 assign [class="^Musescore|smplayer|mpv$"] $ws5
 
+assign [class="Xfce4-terminal" window_role="cmus"] $ws5
+for_window [class="Xfce4-terminal" window_role="cmus" ] focus
+
 assign [class="^libreoffice-writer$"] $ws6
 for_window [class="^libreoffice-writer$"] focus
 
@@ -183,11 +175,17 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
-
+        
+        # Teclas direcionais
         bindsym Left resize shrink width 10 px or 10 ppt
         bindsym Down resize grow height 10 px or 10 ppt
         bindsym Up resize shrink height 10 px or 10 ppt
         bindsym Right resize grow width 10 px or 10 ppt
+        # Vim style
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
 
         # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"
@@ -205,7 +203,7 @@ bindsym $mod+r mode "resize"
 #        status_command i3status
 #        position bottom
 #        font pango:Fantasque Sans Mono Regular 10
-#	    separator_symbol "|"
+#	 separator_symbol "|"
 #        workspace_buttons yes
 #
 #    colors {
@@ -213,8 +211,8 @@ bindsym $mod+r mode "resize"
 #	    statusline  #ffffff
 #	    separator   #ffffff
 #  
-#       ##			        Contorno-Interior-Número/nome
-#	focused_workspace	    #2C2C2C #2C2C2C #ffffff
+#        ##			Contorno|Interior|Número
+#	 focused_workspace	#2C2C2C #2C2C2C #ffffff
 #        active_workspace	#be4443 #be4443 #ffffff
 #        inactive_workspace	#ffffff #ffffff #1e1e1e
 #        urgent_workspace	#DC8CC3 #DC8CC3 #ffffff
@@ -236,20 +234,24 @@ exec --no-startup-id xfce4-power-manager
 exec_always --no-startup-id feh --bg-fill $HOME/Imagens/everforest/green-patch.jpg
 exec --no-startup-id picom
 
-# Atalhos de prohgramas
-bindsym $mod+shift+n exec --no-startup-id firefox
-bindsym $mod+n exec --no-startup-id /home/tadeu/Pacotes/firefox/./firefox
+# Atalhos de programas -----------------------------------------------#
+# Navegador
+bindsym $mod+shift+n exec --no-startup-id firefox-esr
+bindsym $mod+n exec --no-startup-id firefox
+# Gerenciador de arquivos
 bindsym $mod+t exec --no-startup-id /bin/thunar
-#bindsym release $mod+n exec xfce4-terminal -e /usr/bin/newsboat 
+# LibreOffice
 bindsym $mod+o exec --no-startup-id ./Pacotes/LibreOffice-still.standard-x86_64.AppImage
-bindsym control+mod1+l exec i3lock -c "#1D2021"
-bindsym $mod+shift+F12 exec xkill
-bindsym $mod+comma exec --no-startup-id alacritty -e vim
-#bindsym $mod+period exec --no-startup-id alacritty -e vifm
-bindsym $mod+semicolon exec --no-startup-id alacritty -e htop 
+# Bloquear a tela
+bindsym control+mod1+l exec i3lock -c "#3F3F3F"
+# TUI
+bindsym $mod+comma exec --no-startup-id xfce4-terminal -e vim
+bindsym $mod+period exec --no-startup-id xfce4-terminal -e vifm
+bindsym $mod+semicolon exec --no-startup-id xfce4-terminal -e htop 
 
 # Atalhos do cmus-remote ---------------------------------------------# 
-#bindsym --release $mod+c exec xfce4-terminal -e /bin/cmus
+bindsym $mod+c $ex "xfce4-terminal --role=cmus --command=cmus"
+
 bindsym $mod+F1 exec --no-startup-id cmus-remote -u
 bindsym $mod+F2 exec --no-startup-id cmus-remote -v -5%
 bindsym $mod+F3 exec --no-startup-id cmus-remote -v +5%
@@ -270,7 +272,7 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 10
 for_window [class=".*"] title_format "<b>%title</b>"
 title_align center
 
-# Fonte padrão do ambiente
+# Fonte padrão
 font pango:Fantasque Sans Mono Regular 8
 for_window [class=".*"] border pixel 3
 
@@ -283,6 +285,9 @@ gaps inner 6
 gaps outer 2
 smart_gaps off
 
+# Toggle gaps ----------------------------------------------------------------------------#
+bindsym $mod+shift+equal gaps inner all toggle 6, gaps outer all toggle 2
+
 # (OUTDATED) Toggle gaps ----------------------------------------------------------------------------#
 #set $mode_gaps Toggle gaps: (+) on (-) off
 #bindsym $mod+g mode "toggle_gaps"
@@ -292,6 +297,3 @@ smart_gaps off
 #    bindsym Return mode "default"
 #    bindsym Escape mode "default"
 #}
-
-# Toggle gaps ----------------------------------------------------------------------------#
-bindsym $mod+shift+equal gaps inner all toggle 6, gaps outer all toggle 2
