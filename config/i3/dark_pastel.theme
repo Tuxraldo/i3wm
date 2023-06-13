@@ -1,0 +1,13 @@
+# ---> Dark Pastel color scheme for i3wm
+
+# border | background | title | split_indicator | child_border
+
+client.focused              #DFAF8F #DFAF8F #3F3F3F #709080 #DFAF8F
+client.focused_inactive     #D8CACC #5a6266 #D8CACC #323D43 #D8CACC
+client.unfocused            #5a6266 #3F3F3F #DCDCDC #D699B6 #3F3F3F
+client.urgent               #E68183 #5a6266 #5a6266 #DC8CC3 #E68183
+client.placeholder          #000000 #0c0c0c #ffffff #000000 #0c0c0c
+
+client.background           #ffffff
+
+# ---> Based on dark pastel theme from xfce4-terminal
