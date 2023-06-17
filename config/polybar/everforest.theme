@@ -1,10 +1,12 @@
-# Eveforest Color Scheme
+# ---> Eveforest Polybar color scheme
+
 [color]
-BG =    "#323D43"
-FG =    "#D8CACC"
-LABEL = "#7FBBB3"
-#cmus=   "#D699B6"
-cmus =   "#DBBC7F"
+BG =     "#323D43"
+CMUS =   "#DBBC7F"
+FG =     "#D8CACC"
+LABEL =  "#7FBBB3"
+SEP =    "465166"
+WP =     "#D699B6"
 
 BLACK =  "#4A555B"
 RED =    "#E68183"
@@ -15,3 +17,5 @@ PURPLE = "#D699B6"
 CYAN =   "#83C092"
 WHITE =  "#D8CAAC"
 GRAY =   "#978d78"
+
+# ---> https://github.com/sainnhe/everforest
