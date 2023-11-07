@@ -1,0 +1,13 @@
+# --->  Nord color scheme for i3wm
+
+# border | background | title | split_indicator | child_border
+
+client.focused              #81A1C1 #81A1C1 #3B4252 #ECEFF4 #81A1C1
+#client.focused_inactive    #61AFEF #61AFEF #2E3440 #a7c080 #61AFEF  
+client.unfocused            #3B4252 #3B4252 #D8DEE9 #a7c080 #3B4252
+client.urgent               #BF616A #BF616A #D8DEE9 #a7c080 #BF616A
+client.placeholder          #000000 #0c0c0c #ffffff #000000 #0c0c0c
+
+client.background           #ffffff
+
+# ---> https://github.com/nordtheme/nord

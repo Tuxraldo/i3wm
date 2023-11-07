@@ -1,0 +1,22 @@
+# --->  Gruvbox color scheme for i3wm
+
+# border | background | title | split_indicator | child_border
+
+#client.focused              #83A598 #83A598 #32302F #A89984 #83A598 
+##client.focused_inactive    #61AFEF #61AFEF #2E3440 #a7c080 #61AFEF 
+#client.unfocused            #464443 #464443 #A89984 #a7c080 #464443
+#client.urgent               #CC241D #CC241D #32302F #32302F #CC231D
+#client.placeholder          #000000 #0c0c0c #ffffff #000000 #0c0c0c
+
+# Borda Azul
+client.focused              #83A598 #83A598 #32302F #83A598 #83A598
+# Borda Roxa
+#client.focused              #98971A #98971A #32302F #98971A #98971A
+#client.focused_inactive    #61AFEF #61AFEF #2E3440 #61AFeF #61AFEF 
+client.unfocused            #464443 #464443 #A89984 #464443 #464443
+client.urgent               #CC241D #CC241D #32302F #CC241D #CC231D
+client.placeholder          #000000 #0c0c0c #ffffff #000000 #0c0c0c
+
+client.background           #ffffff
+
+# ---> https://github.com/morhetz/gruvbox
