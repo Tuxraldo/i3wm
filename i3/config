@@ -77,7 +77,8 @@ bindsym control+Tab fullscreen disable, focus Right, fullscreen enable
 bindsym $mod+Tab workspace back_and_forth
 
 # Focus parent container -------------------------------------------------------------------------#
-#bindsym $mod+p focus parent
+bindsym $mod+Shift+greater focus parent
+bindsym $mod+Shift+less focus child
 
 # Scratchpad (workspace insivível) ---------------------------------------------------------------#
 bindsym $mod+Shift+backslash move scratchpad
