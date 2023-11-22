@@ -30,7 +30,7 @@
 
 # Tecla modificadora
 # Mod4 = tecla super ou windows | Mod1 = alt
-# Rode o comando i3-config-wizard para trocar a tecla modificadora
+# Altere apenas essa variável para trocar a tecla modificadora
 set $mod Mod4
 
 # Orientação padrão da divisão das janelas (vertical/horizontal)
