@@ -50,9 +50,18 @@ focus_follows_mouse yes
 floating_modifier $mod
 
 # Algumas formas de modificar uma janela flutuante
-for_window [class="Galculator" instance="galculator"] floating enable
+# Nesse exemplo defini o deadbeef para sempre abrir
+# em modo floating e em um tamanho específico
 for_window [class="Deadbeef"] floating enable, resize set 1300 690, move position center
 
+# o mesmo exemplo só que abrindo a calculadora galculator
+# sempre em modo floating (o tamanho é definido pelo próprio programa). 
+# Útil para programas que não abrem "maximizados"
+for_window [class="Galculator" instance="galculator"] floating enable
+
+# Com esse atalho, troque para o de sua preferência, é possível escolher um
+# tamanho para as janelas floating.
+# no campo resize escolha o tamanho da janela flutuante
 bindsym $mod+space floating toggle; resize set 1000 590; move position center
 bindsym $mod+Shift+space floating toggle
 
