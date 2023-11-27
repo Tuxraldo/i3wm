@@ -41,6 +41,9 @@ bindsym $mod+Return exec --no-startup-id $term
 # Terminal Alternativo ---------------------------------------------------------------------------#
 bindsym control+mod1+t exec --no-startup-id alacritty
 
+# Toggle i3bar -----------------------------------------------------------------------------------#
+bindsym $mod+b bar mode toggle
+
 # Mudança de foco---------------------------------------------------------------------------------#
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
@@ -81,8 +84,8 @@ bindsym $mod+Shift+greater focus parent
 bindsym $mod+Shift+less focus child
 
 # Scratchpad (workspace insivível) ---------------------------------------------------------------#
-bindsym $mod+Shift+backslash move scratchpad
-bindsym $mod+backslash scratchpad show
+bindsym $mod+Shift+y move scratchpad
+bindsym $mod+y scratchpad show
 
 # Trocnado entre layouts (tile, tabbed, stacking) ------------------------------------------------#
 bindsym $mod+m layout toggle tabbed split
