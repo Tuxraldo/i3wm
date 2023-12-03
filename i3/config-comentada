@@ -75,6 +75,10 @@ bindsym $mod+Return exec --no-startup-id alacritty
 # essa opção é desnecessária, uso apenas porque tenho dois terminais instalados.
 bindsym control+mod1+t exec --no-startup-id xfce4-terminal
 
+# Toggle i3bar
+# apenas se estiver usando o i3status ou i3blocks
+bindsym $mod+b bar mode toggle
+
 # dmenu (lançador de aplicações)
 # aqui você utiliza seu lançador preferido, rofi, dmenu, ulauncher, albert etc.
 bindsym $mod+d exec --no-startup-id sh $HOME/.local/bin/dmenu-scripts/dmenu-command-menu
@@ -352,7 +356,7 @@ include $HOME/.config/i3/dark_pastels.theme
 # opções %class | %instance | %title
 # em border pixel escolha o tamanho da borda das janelas que quiser.
 for_window [class=".*"] title_format "<b>%title</b>"
-title_align center
+title_align center	# opções left | center | right
 for_window [class=".*"] border pixel 3
 
 # Algumas das opções acima podem ser definidas individualmente
@@ -360,7 +364,8 @@ default_border pixel 3              # para as janelas não-floating
 default_floating_border pixel 4     # apenas para janelas floating
 
 # Fonte padrão do ambiente -------------------------------------------#
-# pegue o nome comando: fc-list | grep nome_da_fonte
+# pegue o nome comando: fc-list para listar toda as fontes
+# ou fc-list | grep nome_da_fonte para pesquisar uma fonte específica
 font pango:JetBrainsMono NF 7
 
 # Gaps (apenas para quem utiliza os gaps) --------------------------#
@@ -369,5 +374,5 @@ gaps inner 6
 gaps outer 2
 
 # toggle gaps (adicionar ou remover os gaps quando quiser)
-# Requer, pelo menos, a versão 4.22 do i3
+# Requer, pelo menos, a versão 4.22 do i3wm
 bindsym $mod+shift+equal gaps inner all toggle 6, gaps outer all toggle 2
