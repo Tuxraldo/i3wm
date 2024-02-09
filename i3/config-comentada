@@ -26,6 +26,13 @@
 #   LEMBRE-SE, a melhor forma de manter um arquivo de configuração, é com ele limpo e organizado, sem informações desnecessárias.                  	      
 #   Use só o que precisar ou que achar necessário manter.
 #   
+#   
+#   Teste os atalhos e as opções disponíveis nesse arquivo. Só assim aprenderá de fato como eles funciona. Os textos acima dos comandos são
+#   meramente ilustrativos, servem apenas para tentar explicar de forma genêrica o que cada comando/atalho faz.
+#
+#   Em várias partes desse arquivo você irá se deparar com a opção "class". Para saber qual a classe (class) de um programa
+#   abra o terminal e rode o comando: xprop | grep "WM_CLASS"
+#
 #############################################################################################################################################################
 
 # Tecla modificadora
@@ -51,7 +58,7 @@ floating_modifier $mod
 
 # Algumas formas de modificar uma janela flutuante
 # Nesse exemplo defini o deadbeef para sempre abrir
-# em modo floating e em um tamanho específico
+# em modo floating, centralizado na tela e em um tamanho específico
 for_window [class="Deadbeef"] floating enable, resize set 1300 690, move position center
 
 # o mesmo exemplo só que abrindo a calculadora galculator
@@ -166,6 +173,7 @@ bindsym $mod+x [urgent=latest] focus
 # Renomei as aŕeas de trabalho do jeito que achar melhor
 # é possível usar apenas ícones, apenas letras/números ou ambos, fica a critério do usuário.
 # se usar a polybar, terá que definir as áreas de trabalho no arquivo de config dela também
+# dentro do modulo do i3wm
 set $ws1 "1: "
 set $ws2 "2:  "
 set $ws3 "3: "
@@ -189,6 +197,8 @@ bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
 
+# Move a janela (container) em foco para outra área de trabalho
+# SEM sair da área de trabalho atual
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
 bindsym $mod+Shift+3 move container to workspace $ws3
@@ -199,6 +209,20 @@ bindsym $mod+Shift+7 move container to workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
+
+# Move a janela em foco (container) e TAMBÉM move para o
+# novo workspace, ou seja, você muda a janela em foco e
+# o workspace com único comando
+bindsym $mod+Shift+1 move container to workspace $ws1 ; workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2 ; workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3 ; workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4 ; workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5 ; workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6 ; workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7 ; workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8 ; workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9 ; workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10 ; workspace $ws10
 
 # Abrindo programas em áreas de trabalho específicas (usei vários programas, apenas como exemplo)
 # Repare que em algumas linhas temos o complemento "for_window" e "focus", que serve para, ao abrir o programa, 
@@ -234,12 +258,16 @@ for_window [class="^Psensor$|Virt-manager"] layout tabbed focus
 bindsym $mod+Shift+c reload
 # restart recarrega o ambiente inteiro, incluindo o painel que estiver utilizando.
 bindsym $mod+Shift+r restart
-# encerra a sessão do i3wm/logout.
+# encerra a sessão do i3wm com um dialogo de confirmação
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+# encerra a sessão do i3 SEM dialogo de informação. O i3 será encerrado
+# SEM perdir confirmação
+bindsym $mod+Shift+e exec i3-msg exit
 
 # Redimensionar a janela 
-# o mesmo pode ser feito com mouse + tecla modificadora o próximo as bordas das janelas
-# funciona também no modo floating
+# o mesmo pode ser feito com mouse + tecla modificadora próximo as bordas das janelas
+# funciona também no modo floating. É necessário mais de um container (janela) 
+# aberto ou, se existir apenas um container, ele PRECISA ser floating
 
 mode "resize" {
         # Altere os valores em px para aumentar ou diminuir a 
@@ -285,12 +313,13 @@ bar {
 }
 
 # Programas que iniciam com a sessão do i3wm -------------------------#
-# Aqui coloco o que irá iniciar junto com o i3wm (modifique para as suas necessidades)
+# Aqui coloco o que irá iniciar junto com o i3wm (modifique para as suas necessidades).
 # polkit, gerenciador de notificação, applet de rede, compositor, wallpaper etc.
 # adione os programas que for utilizar, deixei alguns que utilizo como exemplo. 
-# ao executar um programa no i3, temos duas opções: exec e exec_always
+#
+# Ao executar um programa no i3, temos duas opções: exec e exec_always
 # o exec executa o programa apenas quando o i3 inicializa
-# o exec_always executa o comando TODA vez que o aruqivo de configuração do i3 é carregado
+# o exec_always executa o comando TODA vez que o arquivo de configuração do i3 é recarregado
 exec --no-startup-id psensor
 exec --no-startup-id numlockx on
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
@@ -307,14 +336,14 @@ exec --no-startup-id picom
 # usei o feh, mas você pode usar o nitrogen ou a ferramenta de sua preferência.
 # Se preferir o nitrogen, troque o feh pelo comando nitrogen --restore
 exec_always --no-startup-id feh --bg-fill $HOME/Imagens/gruvbox/city-night-gruvbox.png
-# você também pode carregar o script que salva as informações do feh
-# dessa forma, toda vez que alterar o wallpaper com o comando acima, ele irá
+# você também pode carregar o script que salva as informações do feh.
+# Dessa forma, toda vez que alterar o wallpaper com o comando acima, ele irá
 # salvar as alterações nesse arquivo. Para restaurar, basta carregar da seguinte forma:
 exec --no-startup-id $HOME/.fehbg
 
 # Atalhos de teclado para abrir programas ----------------------------#
-# Outra sessão opcional. Gosto de abrir alguns programas direto com atalhos.
-# Se não gostar, não usei. Pode abrir só com o lançador de aplicações.
+# Sessão opcional. Gosto de abrir alguns programas direto com atalhos.
+# Se não gostar, não use. Pode abrir só com o lançador de aplicações.
 bindsym --release $mod+shift+m exec firefox-esr
 bindsym --release $mod+m exec firefox
 bindsym --release $mod+t exec thunar
@@ -323,7 +352,7 @@ bindsym control+mod1+l exec i3lock -c "#000000"
 bindsym --release $mod+g exec gimp
 
 # Atalhos do cmus-remote ---------------------------------------------# 
-#bindsym --release $mod+c exec xfce4-terminal -e /bin/cmus
+bindsym --release $mod+c exec xfce4-terminal -e /bin/cmus
 bindsym $mod+F1 exec cmus-remote -u
 bindsym $mod+F2 exec cmus-remote -v -5%
 bindsym $mod+F3 exec cmus-remote -v +5%
@@ -347,29 +376,35 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 10
 
 # Esquema de cores padrão --------------------------------------------#
 # Utilizo um arquivo separado para as cores. Nesse caso é mais fácil de alterar
-# o esquema de cores quando quiser.
-# um exemplo de pode ser encontrado em:
+# o esquema de cores quando quiser. Um exemplo de pode ser encontrado em:
 # https://i3wm.org/docs/userguide.html#client_colors
 include $HOME/.config/i3/dark_pastels.theme
 
-# Formatos títulos das janelas e outras configurações ----------------#
+# Formatos do título das janelas e outras configurações ------------ -#
 # opções %class | %instance | %title
-# em border pixel escolha o tamanho da borda das janelas que quiser.
+# defini o título com negrito (<b>negrito</b>) se quiser pode
+# user itálico também (<i>itálico</i>)
 for_window [class=".*"] title_format "<b>%title</b>"
-title_align center	# opções left | center | right
-for_window [class=".*"] border pixel 3
+# Alinhamento do título das janelas
+# opções left | center | right
+title_align cente
+# Em border pixel escolha o tamanho da borda das janelas que quiser.
+# isso inclui TODAS as janelas
+for_window [class=".*"] border pixel 2 
 
 # Algumas das opções acima podem ser definidas individualmente
 default_border pixel 3              # para as janelas não-floating
 default_floating_border pixel 4     # apenas para janelas floating
 
 # Fonte padrão do ambiente -------------------------------------------#
-# pegue o nome comando: fc-list para listar toda as fontes
+# pegue o nome da fonte com o comando: fc-list
 # ou fc-list | grep nome_da_fonte para pesquisar uma fonte específica
 font pango:JetBrainsMono NF 7
 
-# Gaps (apenas para quem utiliza os gaps) --------------------------#
-smart_gaps on
+# Gaps (apenas para quem utiliza os gaps) ----------------------------#
+# Os gaps podem ser configurados de forma bem mais completa
+# Leiam a sessão 6.24 da wiki https://i3wm.org/docs/userguide.html#changing_gaps
+smart_gaps on   # desabilita os gaps quando existir apenas um container (janela)
 gaps inner 6
 gaps outer 2
 
